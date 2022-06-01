@@ -1,0 +1,4 @@
+template <a>
+#define macro WOOP = takes(0) returns(1) {
+  <a + 1>
+}

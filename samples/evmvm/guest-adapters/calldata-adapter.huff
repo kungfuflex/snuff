@@ -1,0 +1,18 @@
+#define macro GUEST_CALLDATALOAD = takes(0) returns(0) {
+  0x60 add calldataload    // [ calldata_ptr+32 ]
+}
+
+#define macro GUEST_CALLDATASIZE = takes(0) returns(0) {
+  0x40
+  calldataload
+}
+
+template <safemath_error_label>
+#define macro GUEST_CALLDATACOPY = takes(0) returns(0) {
+  CALC_MEM_OFFSET<safemath_error_label>()
+  swap1
+  0x60
+  add
+  swap1
+  calldatacopy
+}

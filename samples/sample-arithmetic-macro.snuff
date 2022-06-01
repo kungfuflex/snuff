@@ -1,0 +1,15 @@
+template <a,b>
+#define macro SOME_FUNC = takes(0) returns(1) {
+  <a >> b>
+  0x0
+  mstore
+  0x20
+  0x0
+  return
+}
+
+#define macro RUN_CODE = takes(0) returns(1) {
+  SOME_FUNC<0xffff, 0x8>()
+  loop:
+    0x0
+}

@@ -1,0 +1,17 @@
+#define macro TEMPLATE_FUNCTION = takes(0) returns(0) {
+  0x2 add
+}
+
+template <OTHER_RUN, THIRD_RUN>
+#define macro RUN_CODE_HELPER_TWO = takes(0) returns(0) {
+  0x3 add OTHER_RUN() THIRD_RUN() 
+}
+
+template <RUN>
+#define macro RUN_CODE_HELPER = takes(0) returns(0) {
+  0x2 RUN_CODE_HELPER_TWO<RUN, RUN>() 0x0 mstore 0x20 0x0 return
+}
+
+#define macro RUN_CODE = takes(0) returns(0) {
+  RUN_CODE_HELPER<TEMPLATE_FUNCTION>()
+}

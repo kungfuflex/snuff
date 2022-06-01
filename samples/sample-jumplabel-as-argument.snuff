@@ -1,0 +1,10 @@
+template <label>
+#define macro TEMPLATE_FUNCTION = takes(0) returns(0) {
+  0x2 add label jump 0x0 0x0 return
+}
+
+#define macro RUN_CODE = takes(0) returns(0) {
+  0x1 TEMPLATE_FUNCTION<somelabel>()
+  somelabel:
+    0x0 mstore 0x20 0x0 return
+}

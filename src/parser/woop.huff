@@ -1,0 +1,6 @@
+#define macro WOOP = takes(0) returns(1) {
+  do: stop
+  woop: 0x0 0x0 revert
+    0x5 0x6
+   0x7 0x8
+}

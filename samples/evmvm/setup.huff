@@ -1,0 +1,38 @@
+#define macro COPY_JUMPTABLE = takes(0) returns(0) {
+  __tablesize(OPCODE__TABLE)
+  __tablestart(OPCODE__TABLE)
+  0x0
+  codecopy
+}
+
+#define macro INIT_PROGRAMCOUNTER = takes(0) returns(0) {
+  CODE_PTR()
+  SET_PC()
+}
+
+#define macro COPY_GUEST_CODE = takes(0) returns(0) {
+  CODE_PTR()                 // [ codeloc ]
+  0x0
+  calldataload
+  dup1         // [ address, address, codeloc ]
+  extcodesize
+  dup1
+  dup1 // [ size, size, size, address, codeloc ]
+  SET_CODESIZE()             // [ size, size, address, codeloc ]
+  0x0
+  dup5
+  dup5                 // [ address, codeloc, 0, size, size, address, codeloc ]
+  extcodecopy                   // [ size, address, codeloc ]
+  swap1
+  SET_GUEST_ADDRESS()           // [ size, codeloc ]
+  add
+  0x1
+  add
+  SET_MEM_OFFSET()  // []
+}
+
+#define macro PREPARE_HYPERVISOR = takes(0) returns(0) {
+  COPY_JUMPTABLE() // []
+  INIT_PROGRAMCOUNTER()
+  COPY_GUEST_CODE()
+}

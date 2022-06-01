@@ -1,0 +1,39 @@
+{
+  "name": "snuff",
+  "version": "0.1.0",
+  "description": "the final assembler for EVM",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha",
+    "build": "pegjs ./src/parser/snuff.pegjs",
+    "prettier": "prettier --write .",
+    "test:node": "hardhat node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/raypulver/snuff.git"
+  },
+  "keywords": [
+    "snuff",
+    "huff",
+    "fork"
+  ],
+  "author": "Raymond Pulver IV",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/raypulver/snuff#readme",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.6",
+    "chai": "^4.2.0",
+    "hardhat": "^2.9.7",
+    "mocha": "^6.2.0",
+    "pegjs": "^0.10.0",
+    "prettier": "^2.6.2"
+  },
+  "dependencies": {
+    "emasm": "^0.1.10",
+    "fs-extra": "^8.1.0"
+  }
+}

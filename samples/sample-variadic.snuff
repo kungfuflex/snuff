@@ -1,0 +1,22 @@
+#define macro ADD = takes(0) returns(0) {
+  add
+}
+
+template <ARG>
+#define macro TEMPLATE_FUNCTION = takes(0) returns(0) {
+  0x2 ARG()
+}
+
+template <REDUCED>
+#define macro RUN_CODE_HELPER_TWO = takes(0) returns(0) {
+  REDUCED()
+}
+
+template <RUN, TEMPLATE>
+#define macro RUN_CODE_HELPER = takes(0) returns(0) {
+  0x2 RUN_CODE_HELPER_TWO<RUN<TEMPLATE>>() 0x0 mstore 0x20 0x0 return
+}
+
+#define macro RUN_CODE = takes(0) returns(0) {
+  RUN_CODE_HELPER<TEMPLATE_FUNCTION<ADD>, ADD>()
+}
